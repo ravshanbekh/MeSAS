@@ -1,11 +1,12 @@
 ﻿using DAL.Contexts;
 using DAL.IRepositories;
+using Domain.Commons;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace DAL.Repositories;
 
-public class Repository<T> : IRepository<T> where T : class
+public class Repository<T> : IRepository<T> where T : Auditable
 {
     private readonly AppDbContext appDbContext;
     public readonly DbSet<T> dbSet;
