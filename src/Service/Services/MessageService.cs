@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DAL.IRepositories;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Messages;
 using Service.Exceptions;
 using Service.Interfaces;
@@ -27,18 +28,36 @@ public class MessageService : IMessageService
         return result;
     }
 
-    public Task<bool> DeleteAsync(long id)
+    public async Task<bool> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        Message existMessage = await this.repository.SelectAsync(x => x.Id.Equals(id));
+
+        if (existMessage is null)
+        {
+            throw new NotFoundException($"This Message is not found with Id-{id}");
+        }
+
+        this.repository.Remove(existMessage);
+        await this.repository.SaveAsync();
+
+        return true;
     }
 
-    public Task<IEnumerable<MessageResultDto>> GetAllMessagesAsync()
+    public async Task<IEnumerable<MessageResultDto>> GetAllMessagesAsync()
     {
-        throw new NotImplementedException();
+        var Messages = await this.repository.SelectAll().ToListAsync();
+        var result = mapper.Map<IEnumerable<MessageResultDto>>(Messages);
+        return result;
     }
 
-    public Task<MessageResultDto> GetAsync(long Id)
+    public async Task<MessageResultDto> GetAsync(long id)
     {
-        throw new NotImplementedException();
+        Message existMessage = await this.repository.SelectAsync(x => x.Id.Equals(id));
+
+        if (existMessage is null)
+        {
+            throw new NotFoundException($"This Message is not found with Id-{id}");
+        }
+        return mapper.Map<MessageResultDto>(existMessage);
     }
 }
