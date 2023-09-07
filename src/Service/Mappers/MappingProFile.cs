@@ -49,6 +49,7 @@ public class MappingProFile : Profile
         CreateMap<Analyse, AnalyseResultDto>().ReverseMap();
         CreateMap<AnalyseCreationDto, Analyse>().ReverseMap();
 
+
         // Attachment
         CreateMap<Attachment, AttachmentResultDto>().ReverseMap();
         CreateMap<AttachmentCreationDto, Attachment>().ReverseMap();
