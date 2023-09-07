@@ -3,7 +3,7 @@ using Service.Interfaces;
 
 namespace Service.Services;
 
-public class AnalysesService : IAnalyseService
+public class AnalyseService : IAnalyseService
 {
     public Task<AnalyseResultDto> CreateAsync(AnalyseCreationDto dto)
     {

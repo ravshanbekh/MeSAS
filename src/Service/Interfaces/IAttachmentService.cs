@@ -4,7 +4,7 @@ using Service.DTOs.Attachments;
 
 namespace Service.Interfaces;
 
-public interface IAttchamentService
+public interface IAttachmentService
 {
     Task<Attachment> UploadAsync(AttachmentCreationDto dto);
     Task<bool> RemoveAsync(Attachment attachment);

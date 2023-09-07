@@ -3,7 +3,7 @@ using Service.Interfaces;
 
 namespace Service.Services;
 
-public class DoctorService : IDoctorSevice
+public class DoctorService : IDoctorService
 {
     public Task<DoctorResultDto> CreateAsync(DoctorCreationDto dto)
     {

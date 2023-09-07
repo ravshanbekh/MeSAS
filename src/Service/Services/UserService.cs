@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DAL.IRepositories;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Users;
 using Service.Exceptions;
 using Service.Helpers;
@@ -47,8 +48,8 @@ public class UserService : IUserService
     public async Task<IEnumerable<UserResultDto>> GetAllUsersAsync()
     {
         var users = await this.repository.SelectAll()
-           .ToPaginate(@params)
            .ToListAsync();
+           //.ToPaginate(@params)
         var result = this.mapper.Map<IEnumerable<UserResultDto>>(users);
         return result;
     }
