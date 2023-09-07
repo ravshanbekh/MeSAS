@@ -9,9 +9,12 @@
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Mappers\" />
     <Folder Include="Helpers\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
