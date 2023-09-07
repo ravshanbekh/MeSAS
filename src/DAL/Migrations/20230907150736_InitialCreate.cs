@@ -36,6 +36,7 @@ namespace DAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Location = table.Column<string>(type: "text", nullable: false),
+                    AttachmentId = table.Column<long>(type: "bigint", nullable: true),
                     HospitalType = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
@@ -54,6 +55,7 @@ namespace DAL.Migrations
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
                     AttachmentId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -77,6 +79,7 @@ namespace DAL.Migrations
                     Specialization = table.Column<string>(type: "text", nullable: false),
                     LicenseNumber = table.Column<string>(type: "text", nullable: false),
                     HospitalId = table.Column<long>(type: "bigint", nullable: false),
+                    AttachmentId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -129,6 +132,8 @@ namespace DAL.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
                     MeetingDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DoctorId1 = table.Column<long>(type: "bigint", nullable: true),
+                    UserId1 = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -142,11 +147,21 @@ namespace DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Bookings_Doctors_DoctorId1",
+                        column: x => x.DoctorId1,
+                        principalTable: "Doctors",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Bookings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Users_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -188,9 +203,11 @@ namespace DAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    AttachmentId = table.Column<long>(type: "bigint", nullable: true),
                     MedicalRecordId = table.Column<long>(type: "bigint", nullable: false),
                     AnalyseType = table.Column<int>(type: "integer", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
+                    UserId1 = table.Column<long>(type: "bigint", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -215,6 +232,11 @@ namespace DAL.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Analyses_Users_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -233,14 +255,29 @@ namespace DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Analyses_UserId1",
+                table: "Analyses",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_DoctorId",
                 table: "Bookings",
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bookings_DoctorId1",
+                table: "Bookings",
+                column: "DoctorId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bookings_UserId",
                 table: "Bookings",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_UserId1",
+                table: "Bookings",
+                column: "UserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_HospitalId",

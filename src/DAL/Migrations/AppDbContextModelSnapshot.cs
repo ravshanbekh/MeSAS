@@ -55,6 +55,9 @@ namespace DAL.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
@@ -62,6 +65,8 @@ namespace DAL.Migrations
                     b.HasIndex("MedicalRecordId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Analyses");
                 });
@@ -80,6 +85,9 @@ namespace DAL.Migrations
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("DoctorId1")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("MeetingDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -89,11 +97,18 @@ namespace DAL.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
+                    b.HasIndex("DoctorId1");
+
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Bookings");
                 });
@@ -281,6 +296,10 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("text");
@@ -335,10 +354,14 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("Analyses")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("Analyses")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Doctor");
 
@@ -350,16 +373,24 @@ namespace DAL.Migrations
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
                     b.HasOne("Domain.Entities.Doctor", "Doctor")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User", "User")
+                    b.HasOne("Domain.Entities.Doctor", null)
                         .WithMany("Bookings")
+                        .HasForeignKey("DoctorId1");
+
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Doctor");
 
