@@ -5,7 +5,8 @@ using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers;
 
-public class AnalysesController :BaseController
+public class AnalysesController : Controller
+
 {
     private readonly IAnalyseService analyseService;
     public AnalysesController(IAnalyseService analyseService)
