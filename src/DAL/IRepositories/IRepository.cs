@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using Domain.Commons;
+using System.Linq.Expressions;
 
 namespace DAL.IRepositories;
 
-public interface IRepository<T> where T : class
+public interface IRepository<T> where T : Auditable
 {
     Task CrateAsycn(T entity);
     void Update(T entity);
