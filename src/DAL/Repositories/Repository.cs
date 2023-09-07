@@ -45,7 +45,7 @@ public class Repository<T> : IRepository<T> where T : Auditable
         return query;
     }
 
-    public async Task<T> SelectAsync(Expression<Func<T, bool>> expression = null, string[] includes = null)
+    public async Task<T> SelectAsync(Expression<Func<T, bool>> expression, string[] includes = null)
     {
 
         IQueryable<T> query = dbSet.Where(expression).AsQueryable();

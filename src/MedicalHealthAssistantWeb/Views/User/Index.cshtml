@@ -1,0 +1,138 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container overflow-hidden align-content-center">
+    <div class="row gx-5 align-content-center align-items-center">
+        <div class="col ">
+            <h4 class="text-primary">Users</h4>
+        </div>
+        <div class="col">
+            <div class="Col">
+                <form asp-action="Create" asp-controller="User">
+                    <button type="button" class="col btn btn-success m-3 float-end">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <div class="ms-3">
+                            <p class="fw-bold mb-1">John Doe</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">+998900957074</p>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <form asp-action="Create" asp-controller="User">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                    </div>
+                    <div class="m-lg-3">
+                        <form asp-action="Create" asp-controller="User">
+                            <button type="submit" class="btn btn-secondary">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">John Doe</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">+998900957074</p>
+            </td>
+            <td>
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Edit</button>
+                </form>
+
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Remove</button>
+                </form>
+            </td>
+        </tr>
+                <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">John Doe</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">+998900957074</p>
+            </td>
+            <td>
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Edit</button>
+                </form>
+
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Remove</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">John Doe</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">+998900957074</p>
+            </td>
+            <td>
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Edit</button>
+                </form>
+
+                <form asp-action="Create" asp-controller="User">
+                    <button type="submit" class="btn btn-secondary">Remove</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

@@ -9,5 +9,5 @@ public interface IBookingService
     Task<BookingResultDto> UpdateAsync(BookingUpdateDto dto);
     Task<bool> DeleteAsync(long id);
     Task<IEnumerable<BookingResultDto>> GetAllBookingsAsync();
-    Task<BookingResultDto> GetAsync(long Id);
+    Task<BookingResultDto> GetAsync(long id);
 }
