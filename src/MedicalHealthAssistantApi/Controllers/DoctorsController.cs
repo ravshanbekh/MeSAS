@@ -1,25 +1,34 @@
 ﻿using MedicalHealthAssistantApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using Service.DTOs.Analyses;
+using Service.DTOs.Doctors;
 using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers;
 
-public class AnalysesController :BaseController
+public class DoctorsController : BaseController
 {
-    private readonly IAnalyseService analyseService;
-    public AnalysesController(IAnalyseService analyseService)
+    private readonly IDoctorService doctorService;
+    public DoctorsController(IDoctorService doctorService)
     {
-        this.analyseService = analyseService;
+        this.doctorService = doctorService;
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> AddAsync(AnalyseCreationDto dto)
+    public async Task<IActionResult> AddAsync(DoctorCreationDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.CreateAsync(dto)
+            Data = await this.doctorService.CreateAsync(dto)
+        });
+
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateAsync(DoctorUpdateDto dto)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await this.doctorService.UpdateAsync(dto)
         });
 
     [HttpDelete("delete/{id:long}")]
@@ -28,10 +37,8 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.DeleteAsync(id)
+            Data = await this.doctorService.DeleteAsync(id)
         });
-
-    [HttpDelete("remove/{id:long}")]
 
     [HttpGet("get/{id:long}")]
     public async Task<IActionResult> GetByIdAsync(long id)
@@ -39,7 +46,7 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.GetAsync(id)
+            Data = await this.doctorService.GetAsync(id)
         });
 
     [HttpGet("get-all")]
@@ -48,6 +55,6 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = analyseService.GetAllAnalysesAsync()
+            Data = doctorService.GetAllDoctorsAsync()
         });
 }

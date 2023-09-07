@@ -1,25 +1,25 @@
 ﻿using MedicalHealthAssistantApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using Service.DTOs.Analyses;
+using Service.DTOs.Hospitals;
 using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers;
 
-public class AnalysesController :BaseController
+public class HospitalController : BaseController
 {
-    private readonly IAnalyseService analyseService;
-    public AnalysesController(IAnalyseService analyseService)
+    private readonly IHospitalService hospitalService;
+    public HospitalController(IHospitalService hospitalService)
     {
-        this.analyseService = analyseService;
+        this.hospitalService = hospitalService;
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> AddAsync(AnalyseCreationDto dto)
+    public async Task<IActionResult> AddAsync(HospitalCreationDto dto)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.CreateAsync(dto)
+            Data = await this.hospitalService.CreateAsync(dto)
         });
 
     [HttpDelete("delete/{id:long}")]
@@ -28,7 +28,7 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.DeleteAsync(id)
+            Data = await this.hospitalService.DeleteAsync(id)
         });
 
     [HttpDelete("remove/{id:long}")]
@@ -39,7 +39,7 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.analyseService.GetAsync(id)
+            Data = await this.hospitalService.GetAsync(id)
         });
 
     [HttpGet("get-all")]
@@ -48,6 +48,6 @@ public class AnalysesController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = analyseService.GetAllAnalysesAsync()
+            Data = hospitalService.GetAllHospitalsAsync()
         });
 }
