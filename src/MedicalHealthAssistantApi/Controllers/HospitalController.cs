@@ -43,7 +43,7 @@ public class HospitalController : BaseController
         });
 
     [HttpGet("get-all")]
-    public async Task<IActionResult> GetAllsync()
+    public async Task<IActionResult> GetAllasync()
         => Ok(new Response
         {
             StatusCode = 200,

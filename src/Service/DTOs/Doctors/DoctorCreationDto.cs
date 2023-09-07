@@ -9,6 +9,7 @@ public class DoctorCreationDto
     [Required]
     public string LastName { get; set; }
     [Phone]
+    public string Password { get; set; }
     public string Phone { get; set; }
     public string Score { get; set; }
     public string Specialization { get; set; } // Shifokorning mutaxassisligi

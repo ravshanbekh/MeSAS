@@ -1,27 +1,64 @@
-﻿using Service.DTOs.Analyses;
+﻿using AutoMapper;
+using DAL.IRepositories;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Service.DTOs.Analyses;
+using Service.DTOs.Bookings;
+using Service.Exceptions;
 using Service.Interfaces;
 
 namespace Service.Services;
 
 public class AnalyseService : IAnalyseService
 {
-    public Task<AnalyseResultDto> CreateAsync(AnalyseCreationDto dto)
+    private readonly IMapper mapper;
+    private readonly IRepository<Analyse> repository;
+
+    public AnalyseService(IRepository<Analyse> repository, IMapper mapper)
     {
-        throw new NotImplementedException();
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+    public async Task<AnalyseResultDto> CreateAsync(AnalyseCreationDto dto)
+    {
+        var mappedAnalyse = mapper.Map<Analyse>(dto);
+        await this.repository.AddAsync(mappedAnalyse);
+        await this.repository.SaveAsync();
+
+        var result = mapper.Map<AnalyseResultDto>(mappedAnalyse);
+        return result;
     }
 
-    public Task<bool> DeleteAsync(long id)
+    public async Task<bool> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        Analyse existAnalyse = await this.repository.SelectAsync(x => x.Id.Equals(id));
+
+        if (existAnalyse is null)
+        {
+            throw new NotFoundException($"This Analyse is not found with Id-{id}");
+        }
+
+        this.repository.Remove(existAnalyse);
+        await this.repository.SaveAsync();
+
+        return true;
     }
 
-    public Task<IEnumerable<AnalyseResultDto>> GetAllAnalysesAsync()
+    public async Task<IEnumerable<AnalyseResultDto>> GetAllAnalysesAsync()
     {
-        throw new NotImplementedException();
+        var Analyses = await this.repository.SelectAll().ToListAsync();
+        var result = mapper.Map<IEnumerable<AnalyseResultDto>>(Analyses);
+        return result;
     }
 
-    public Task<AnalyseResultDto> GetAsync(long Id)
+    public async Task<AnalyseResultDto> GetAsync(long id)
     {
-        throw new NotImplementedException();
+        Analyse existAnalyse = await this.repository.SelectAsync(x => x.Id.Equals(id));
+
+        if (existAnalyse is null)
+        {
+            throw new NotFoundException($"This Analyse is not found with Id-{id}");
+        }
+        return mapper.Map<AnalyseResultDto>(existAnalyse);
     }
 }
