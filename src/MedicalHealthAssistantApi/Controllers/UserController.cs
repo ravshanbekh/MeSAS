@@ -5,8 +5,6 @@ using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class UserController : Controller
     {
         private readonly IUserService userService;
@@ -15,6 +13,7 @@ namespace MedicalHealthAssistantApi.Controllers
             this.userService = userService;
         }
 
+        [HttpPost("User")]
         public async Task<IActionResult> PostAsync(UserCreationDto dto)
             => Ok(new Response
             {
@@ -60,3 +59,4 @@ namespace MedicalHealthAssistantApi.Controllers
             });
     }
 }
+
