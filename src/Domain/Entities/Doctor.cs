@@ -11,8 +11,6 @@ public class Doctor : Auditable
     public string Score { get; set; }
     public string Specialization { get; set; } // Shifokorning mutaxassisligi
     public string LicenseNumber { get; set; }
-    public long? AttachmentId { get; set; }
-    public Attachment Attachment { get; set; }
     public long HospitalId { get; set; }
     public Hospital Hospital { get; set; }
     public ICollection<Booking> Bookings { get; set; }
