@@ -18,5 +18,7 @@ public class AppDbContext:DbContext
    public  DbSet<MedicalRecord> MedicalRecords { get; set; }
    public  DbSet<Message> Messages { get; set; }
 
-    
+   
+
+
 }

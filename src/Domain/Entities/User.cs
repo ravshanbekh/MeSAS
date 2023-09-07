@@ -10,7 +10,6 @@ public class User : Auditable
     public string Phone { get; set; }
     public string Address { get; set; }
     public long? AttachmentId { get; set; }
-    public Attachment Attachment { get; set; }
     public ICollection<MedicalRecord> MedicalRecords { get; set; }
     public ICollection<Analyse> Analyses { get; set; }
     public ICollection<Booking> Bookings { get; set; }
