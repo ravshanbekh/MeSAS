@@ -4,7 +4,7 @@ using Service.Interfaces;
 
 namespace Service.Services;
 
-public class AttachmentService : IAttchamentService
+public class AttachmentService : IAttachmentService
 {
     public Task<bool> RemoveAsync(Attachment attachment)
     {

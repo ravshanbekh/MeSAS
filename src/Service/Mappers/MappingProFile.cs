@@ -12,9 +12,9 @@ using Service.DTOs.Users;
 
 namespace Service.Mappers;
 
-public class MappingProFile : Profile
+public class MappingProfile : Profile
 {
-    public MappingProFile()
+    public MappingProfile()
     {
         // User
         CreateMap<User, UserResultDto>().ReverseMap();
