@@ -13,6 +13,7 @@ public static class ServicesCollection
 
         //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         //services.AddAutoMapper(typeof(MappingProfile));
+
     }
 
 }
