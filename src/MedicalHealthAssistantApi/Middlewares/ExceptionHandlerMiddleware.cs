@@ -1,4 +1,5 @@
 ﻿using MedicalHealthAssistantApi.Models;
+using Service.Exceptions;
 
 namespace MedicalHealthAssistantApi.Middlewares;
 
@@ -26,7 +27,7 @@ public class ExceptionHandlerMiddleware
                 Message = ex.Message,
             });
         }
-        catch (AlreadyExistException ex)
+        catch (AlReadyExistException ex)
         {
             context.Response.StatusCode = ex.StatusCode;
             await context.Response.WriteAsJsonAsync(new Response

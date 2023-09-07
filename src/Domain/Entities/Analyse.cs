@@ -1,4 +1,5 @@
 ﻿using Domain.Commons;
+using Domain.Entitiesrg;
 using Domain.Enums;
 
 namespace Domain.Entities;
@@ -13,5 +14,6 @@ public  class Analyse : Auditable
     public MedicalRecord MedicalRecord { get; set; }
     public AnalyseType AnalyseType { get; set; }
     public string Description { get; set; }
-    public long AttachmentId { get; set; }
+    public long? AttachmentId { get; set; }
+    public Attachment Attachment { get; set; }
 }
