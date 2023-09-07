@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.IRepositories;
+using Domain.Configuration;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Users;
@@ -52,6 +53,11 @@ public class UserService : IUserService
            //.ToPaginate(@params)
         var result = this.mapper.Map<IEnumerable<UserResultDto>>(users);
         return result;
+    }
+
+    public Task<IEnumerable<UserResultDto>> GetAllUsersAsync(PaginationParams @params)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<UserResultDto> GetAsync(long id)
