@@ -29,7 +29,6 @@ public class MappingProFile : Profile
         // MedicalRecord
         CreateMap<MedicalRecord, MedicalRecordResultDto>().ReverseMap();
         CreateMap<MedicalRecordCreationDto, MedicalRecord>().ReverseMap();
-        CreateMap<MedicalRecordUpdateDto, MedicalRecord>().ReverseMap();
 
         // Hospital
         CreateMap<Hospital, HospitalResultDto>().ReverseMap();
@@ -49,7 +48,6 @@ public class MappingProFile : Profile
         // Analyse
         CreateMap<Analyse, AnalyseResultDto>().ReverseMap();
         CreateMap<AnalyseCreationDto, Analyse>().ReverseMap();
-        CreateMap<AnalyseUpdateDto, Analyse>().ReverseMap();
 
         // Attachment
         CreateMap<Attachment, AttachmentResultDto>().ReverseMap();

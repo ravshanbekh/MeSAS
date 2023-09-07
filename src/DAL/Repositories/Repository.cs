@@ -16,21 +16,21 @@ public class Repository<T> : IRepository<T> where T : Auditable
         dbSet = appDbContext.Set<T>();
     }
 
-    public async Task CrateAsycn(T entity)
+    public async Task AddAsync(T entity)
     {
         await dbSet.AddAsync(entity);
     }
-    public void Update(T entity)
+    public void Modify(T entity)
     {
         appDbContext.Entry(entity).State = EntityState.Modified;
     }
 
-    public void Delete(T entity)
+    public void Remove(T entity)
     {
         dbSet.Remove(entity);
     }
 
-    public IQueryable<T> GetAll(Expression<Func<T, bool>> expression = null, bool isNotTraces = true, string[] includes = null)
+    public IQueryable<T> SelectAll(Expression<Func<T, bool>> expression = null, bool isNotTraces = true, string[] includes = null)
     {
         IQueryable<T> query = expression is null ? dbSet.AsQueryable() : dbSet.Where(expression).AsQueryable();
         query = isNotTraces ? query.AsTracking() : query;
@@ -45,7 +45,7 @@ public class Repository<T> : IRepository<T> where T : Auditable
         return query;
     }
 
-    public async Task<T> GetAsync(Expression<Func<T, bool>> expression = null, string[] includes = null)
+    public async Task<T> SelectAsync(Expression<Func<T, bool>> expression = null, string[] includes = null)
     {
 
         IQueryable<T> query = dbSet.Where(expression).AsQueryable();
@@ -62,7 +62,7 @@ public class Repository<T> : IRepository<T> where T : Auditable
 
         return entity;
     }
-    public async Task SaveAsyc()
+    public async Task SaveAsync()
     {
 
         await appDbContext.SaveChangesAsync();
