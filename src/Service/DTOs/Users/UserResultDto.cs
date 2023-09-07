@@ -1,4 +1,6 @@
-﻿namespace Service.DTOs.Users;
+﻿using Service.DTOs.Attachments;
+
+namespace Service.DTOs.Users;
 
 public class UserResultDto
 {
@@ -7,5 +9,5 @@ public class UserResultDto
     public string LastName { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
-    public AttachmentResultDto Attachment { get; set; }
+    public long AttachmentId { get; set; }
 }

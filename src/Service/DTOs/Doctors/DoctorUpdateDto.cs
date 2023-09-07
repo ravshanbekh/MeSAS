@@ -12,6 +12,6 @@ public class DoctorUpdateDto
     public string Score { get; set; }
     public string Specialization { get; set; } // Shifokorning mutaxassisligi
     public string LicenseNumber { get; set; }
-    public AttachmentResultDto Attachment { get; set; }
+    public long AttachmentId { get; set; }
     public HospitalResultDto Hospital { get; set; }
 }

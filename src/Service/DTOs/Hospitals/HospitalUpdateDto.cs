@@ -9,5 +9,5 @@ public class HospitalUpdateDto
     public string Name { get; set; }
     public string Location { get; set; }
     public HospitalType HospitalType { get; set; }
-    public AttachmentResultDto Attachment { get; set; }
+    public long AttachmentId { get; set; }
 }

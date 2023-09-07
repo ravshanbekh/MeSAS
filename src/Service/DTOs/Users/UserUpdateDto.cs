@@ -7,4 +7,5 @@ public class UserUpdateDto
     public string LastName { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
+    public long AttachmentId { get; set; }
 }

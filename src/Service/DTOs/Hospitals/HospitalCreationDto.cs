@@ -8,5 +8,4 @@ public class HospitalCreationDto
     public string Name { get; set; }
     public string Location { get; set; }
     public HospitalType HospitalType { get; set; }
-    public AttachmentResultDto Attachment { get; set; }
 }

@@ -10,4 +10,5 @@ public class AnalyseResultDto
     public long MedicalRecordId { get; set; }
     public AnalyseType AnalyseType { get; set; }
     public string Description { get; set; }
+    public long AttachmetId { get; set; }
 }
