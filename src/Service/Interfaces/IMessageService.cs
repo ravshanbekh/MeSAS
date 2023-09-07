@@ -7,5 +7,5 @@ public interface IMessageService
     Task<MessageResultDto> CreateAsync(MessageCreationDto dto);
     Task<bool> DeleteAsync(long id);
     Task<IEnumerable<MessageResultDto>> GetAllMessagesAsync();
-    Task<MessageResultDto> GetAsync(long Id);
+    Task<MessageResultDto> GetAsync(long id);
 }

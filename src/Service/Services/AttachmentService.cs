@@ -1,5 +1,18 @@
-﻿namespace Service.Services;
+﻿using Domain.Entitiesrg;
+using Service.DTOs.Attachments;
+using Service.Interfaces;
 
-public class AttachmentService
+namespace Service.Services;
+
+public class AttachmentService : IAttachmentService
 {
+    public Task<bool> RemoveAsync(Attachment attachment)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Attachment> UploadAsync(AttachmentCreationDto dto)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,11 +1,11 @@
-﻿using Service.DTOs.MedicalRecords;
+﻿using Service.DTOs.Analyses;
 using Service.Interfaces;
 
 namespace Service.Services;
 
-public class MedicalRecordService : IMedicalRecordService
+public class AnalyseService : IAnalyseService
 {
-    public Task<MedicalRecordResultDto> CreateAsync(MedicalRecordCreationDto dto)
+    public Task<AnalyseResultDto> CreateAsync(AnalyseCreationDto dto)
     {
         throw new NotImplementedException();
     }
@@ -15,12 +15,12 @@ public class MedicalRecordService : IMedicalRecordService
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<MedicalRecordResultDto>> GetAllMedicalRecordsAsync()
+    public Task<IEnumerable<AnalyseResultDto>> GetAllAnalysesAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<MedicalRecordResultDto> GetAsync(long Id)
+    public Task<AnalyseResultDto> GetAsync(long Id)
     {
         throw new NotImplementedException();
     }

@@ -27,7 +27,7 @@ public class ExceptionHandlerMiddleware
                 Message = ex.Message,
             });
         }
-        catch (AlReadyExistException ex)
+        catch (AlreadyExistException ex)
         {
             context.Response.StatusCode = ex.StatusCode;
             await context.Response.WriteAsJsonAsync(new Response

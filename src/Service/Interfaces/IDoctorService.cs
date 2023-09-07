@@ -2,7 +2,7 @@
 
 namespace Service.Interfaces;
 
-public interface IDoctorSevice
+public interface IDoctorService
 {
     Task<DoctorResultDto> CreateAsync(DoctorCreationDto dto);
     Task<DoctorResultDto> UpdateAsync(DoctorUpdateDto dto);
