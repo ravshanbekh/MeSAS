@@ -1,12 +1,12 @@
 ﻿namespace Service.Exceptions;
 
-public class AlReadyExistException:Exception
+public class AlreadyExistException:Exception
 {
     public int StatusCode { get; set; } = 403;
-    public AlReadyExistException(string message) : base(message)
+    public AlreadyExistException(string message) : base(message)
     {
     }
-    public AlReadyExistException(string message, Exception innerException) : base(message, innerException)
+    public AlreadyExistException(string message, Exception innerException) : base(message, innerException)
     {
     }
 }
