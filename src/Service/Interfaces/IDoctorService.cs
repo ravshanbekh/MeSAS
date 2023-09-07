@@ -8,5 +8,5 @@ public interface IDoctorService
     Task<DoctorResultDto> UpdateAsync(DoctorUpdateDto dto);
     Task<bool> DeleteAsync(long id);
     Task<IEnumerable<DoctorResultDto>> GetAllDoctorsAsync();
-    Task<DoctorResultDto> GetAsync(long Id);
+    Task<DoctorResultDto> GetAsync(long id);
 }
