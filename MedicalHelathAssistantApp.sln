@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalHealthAssistantWeb",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "src\Service\Service.csproj", "{7D4894B1-9175-4F46-89D7-150CA32344C7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalHealthAssistantApi", "src\MedicalHealthAssistantApi\MedicalHealthAssistantApi.csproj", "{2B1D7025-F278-4359-8C5F-1645F3286EBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{7D4894B1-9175-4F46-89D7-150CA32344C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4894B1-9175-4F46-89D7-150CA32344C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4894B1-9175-4F46-89D7-150CA32344C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B1D7025-F278-4359-8C5F-1645F3286EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1D7025-F278-4359-8C5F-1645F3286EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1D7025-F278-4359-8C5F-1645F3286EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1D7025-F278-4359-8C5F-1645F3286EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{D06B540F-6997-4529-A991-D9D8FEC8BF48} = {8261D0D7-7F0C-4188-A27C-93819F51B5EC}
 		{1A9F1493-D3DC-4FA9-A128-0A37B49F14E3} = {8261D0D7-7F0C-4188-A27C-93819F51B5EC}
 		{7D4894B1-9175-4F46-89D7-150CA32344C7} = {8261D0D7-7F0C-4188-A27C-93819F51B5EC}
+		{2B1D7025-F278-4359-8C5F-1645F3286EBE} = {8261D0D7-7F0C-4188-A27C-93819F51B5EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {138DC865-884C-40CB-978E-13C131DEEBE6}
