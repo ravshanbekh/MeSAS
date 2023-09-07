@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Service.Exceptions;
 
-namespace Service.Exceptions
+public class AllReadyExistException:Exception
 {
-    internal class AllReadyExistException
+    public int StatusCode { get; set; } = 403;
+    public AllReadyExistException(string message) : base(message)
+    {
+    }
+    public AllReadyExistException(string message, Exception innerException) : base(message, innerException)
     {
     }
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 
-namespace Service.Mappers
+namespace Service.Mappers;
+
+public class MappingProFile : Profile
 {
-    internal class MappingProFile
+    public MappingProFile()
     {
+
     }
 }
