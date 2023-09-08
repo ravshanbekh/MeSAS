@@ -33,7 +33,7 @@
         </tr>
     </thead>
     <tbody>
-        @if(Model is null)
+        @if(Model is not null)
         {
             @foreach(var item in Model)
             {
@@ -45,12 +45,12 @@
                                  style="width: 45px; height: 45px"
                                  class="rounded-circle" />
                             <div class="ms-3">
-                                    <p class="fw-bold mb-1">Name</p>
+                                    <p class="fw-bold mb-1">@item.FirstName @item.LastName</p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">Phone</p>
+                        <p class="fw-normal mb-1">@item.Phone</p>
                     </td>
                     <td>
                         <div class="d-flex align-items-center">

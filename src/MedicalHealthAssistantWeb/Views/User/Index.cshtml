@@ -16,7 +16,7 @@
         <div class="col">
             <div class="Col">
                 <form asp-action="Create" asp-controller="User">
-                    <button type="button" class="col btn btn-success m-3 float-end">Create</button>
+                    <button type="submit" class="col btn btn-success m-3 float-end">Create</button>
                 </form>
             </div>
         </div>
@@ -28,6 +28,7 @@
         <tr>
             <th>Name</th>
             <th>Phone</th>
+            <th>Address</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -44,13 +45,17 @@
                                  style="width: 45px; height: 45px"
                                  class="rounded-circle" />
                             <div class="ms-3">
-                                    <p class="fw-bold mb-1">Name</p>
+                                <p class="fw-bold mb-1">@item.FirstName @item.LastName</p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">Phone</p>
+                        <p class="fw-normal mb-1">@item.Phone</p>
                     </td>
+                    <td>
+                        <p class="fw-normal mb-1">@item.Address</p>
+                    </td>
+
                     <td>
                         <div class="d-flex align-items-center">
                             <div>
@@ -59,7 +64,7 @@
                                 </form>
                             </div>
                             <div class="m-lg-3">
-                                <form asp-action="Remove" asp-controller="User" asp-route-id="@item.Id" method="get">
+                                <form asp-action="Remove" asp-controller="User" asp-route-id="@item.Id" method="post">
                                     <button type="submit" class="btn btn-secondary">Remove</button>
                                 </form>
                             </div>

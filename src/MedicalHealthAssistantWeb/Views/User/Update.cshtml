@@ -33,15 +33,25 @@
                                     </div>
 
                                 </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="password" id="lastName" class="form-control form-control-lg" asp-for="Password" />
+                                        <label class="form-label" for="lastName" asp-for="Password">Password</label>
+                                    </div>
+
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
                                     <div class="form-outline datepicker w-100">
-                                        <input type="number" class="form-control form-control-lg" id="birthdayDate" asp-for = "Phone" value="@Model.Phone" />
+                                        <input type="tel" class="form-control form-control-lg" id="birthdayDate" asp-for = "Phone" value="@Model.Phone" />
                                         <label for="Password" class="form-label" asp-for="Phone">Phone</label>
                                     </div>
                                 </div>
+
 @*                                <div class="col-md-6 mb-4">
 
                                     <h6 class="mb-2 pb-1">Gender: </h6>
@@ -77,8 +87,8 @@
                                 </div>
                                 <div class="col-md-6 mb-4 pb-2">
                                     <div class="form-outline">
-                                        <input type="text" id="Address" class="form-control form-control-lg" value="@Model.Address" />
-                                        <label class="form-label" for="phoneNumber">Address</label>
+                                        <input type="text" id="Address" class="form-control form-control-lg" asp-for = "Address" value="@Model.Address" />
+                                        <label class="form-label" asp-for = "Address" for="phoneNumber">Address</label>
                                     </div>
 
                                 </div>

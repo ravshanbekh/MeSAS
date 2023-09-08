@@ -30,9 +30,10 @@ public class UserController : Controller
         return View(result);
     }
     [HttpPost]
-    public IActionResult Update(UserUpdateDto dto)
+    public async Task<IActionResult> Update(UserUpdateDto dto)
     {
-        return View();
+        var result = await userService.UpdateAsync(dto);
+        return RedirectToRoute(new { controller = "User", action = "Index"});
     }
 
     public async Task<IActionResult> Signin(string password,string phone)
@@ -51,7 +52,7 @@ public class UserController : Controller
         return RedirectToRoute(new { controller = "Home", action = "AdminPage"});
     }
 
-    [HttpDelete]
+    [HttpPost]
     public async Task<IActionResult> Remove(long id)
     {
         var result = await this.userService.DeleteAsync(id);
