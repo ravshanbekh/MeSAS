@@ -20,10 +20,11 @@ public class UserService : IUserService
     private readonly IAttachmentService attachmentService;
     private readonly IMapper mapper;
     private readonly IRepository<User> repository;
-    public UserService(IRepository<User> repository, IMapper mapper)
+    public UserService(IRepository<User> repository, IMapper mapper, IAttachmentService attachmentService)
     {
         this.mapper = mapper;
         this.repository = repository;
+        this.attachmentService = attachmentService;
     }
     public async Task<UserResultDto> CreateAsync(UserCreationDto dto)
     {
