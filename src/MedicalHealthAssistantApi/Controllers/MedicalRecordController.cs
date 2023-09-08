@@ -47,7 +47,7 @@ namespace MedicalHealthAssistantApi.Controllers
             {
                 StatusCode = 200,
                 Message = "Success",
-                Data = MedicalRecordService.GetAllMedicalRecordsAsync()
+                Data =await MedicalRecordService.GetAllMedicalRecordsAsync()
             });
     }
 }

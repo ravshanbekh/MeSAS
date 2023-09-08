@@ -39,7 +39,7 @@ public class ExceptionHandlerMiddleware
         catch (Exception ex)
         {
             context.Response.StatusCode = 500;
-            this.logger.LogError(ex.ToString());
+            this.logger.LogError($"\n\n{ex}\n\n");
             await context.Response.WriteAsJsonAsync(new Response
             {
                 StatusCode = context.Response.StatusCode,

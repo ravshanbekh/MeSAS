@@ -48,6 +48,6 @@ public class AnalysesController : Controller
         {
             StatusCode = 200,
             Message = "Success",
-            Data = analyseService.GetAllAnalysesAsync()
+            Data =await analyseService.GetAllAnalysesAsync()
         });
 }

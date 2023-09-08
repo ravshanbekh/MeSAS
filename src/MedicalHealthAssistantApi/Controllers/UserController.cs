@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Service.DTOs.Attachments;
 using Service.DTOs.Users;
 using Service.Interfaces;
+using System.Security.Claims;
 
 namespace MedicalHealthAssistantApi.Controllers
 {
@@ -47,15 +48,24 @@ namespace MedicalHealthAssistantApi.Controllers
             });
 
         [HttpGet("api/get/id")]
-        public async Task<IActionResult> GetById(string token)
+        public async Task<IActionResult> GetById(long Id)
         {
-            long Id = JwtHelper.GetUserIdFromTokenAsync(token,configuration);
-
             return Ok(new Response
             {
                 StatusCode = 200,
                 Message = "Succes",
                 Data = await userService.GetAsync(Id)
+            });
+        }
+        [HttpGet("api/get/current/user")]
+        public async Task<IActionResult> GetByCurrentUser()
+        {
+            int id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
+            return Ok(new Response
+            {
+                StatusCode = 200,
+                Message = "Succes",
+                Data = await userService.GetAsync(id)
             });
         }
 
