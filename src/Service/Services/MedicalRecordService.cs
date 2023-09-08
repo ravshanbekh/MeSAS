@@ -12,6 +12,7 @@ public class MedicalRecordService : IMedicalRecordService
 {
     private readonly IMapper mapper;
     private readonly IRepository<MedicalRecord> repository;
+    private readonly IRepository<Doctor> repositoryDoctor;
 
     public MedicalRecordService(IRepository<MedicalRecord> repository, IMapper mapper)
     {

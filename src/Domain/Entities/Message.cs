@@ -4,7 +4,7 @@ namespace Domain.Entities;
 
 public class Message :Auditable
 {
-    public long UserID { get; set; }
+    public long UserId { get; set; }
     public User User { get; set; }
     public long HospitalId { get; set; }
     public Hospital Hospital { get; set; }

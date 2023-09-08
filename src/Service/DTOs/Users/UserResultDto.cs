@@ -12,5 +12,5 @@ public class UserResultDto
     public string Phone { get; set; }
     public string Address { get; set; }
     public UserRole Role { get; set; }
-    public long AttachmentId { get; set; }
+    public long? AttachmentId { get; set; }
 }

@@ -1,10 +1,9 @@
 ﻿using Domain.Enums;
 
-namespace Service.DTOs.Users;
+namespace MedicalHealthAssistantApi.Models;
 
-public class UserUpdateDto
+public class UserViewUpdate
 {
-    public long Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Phone { get; set; }
