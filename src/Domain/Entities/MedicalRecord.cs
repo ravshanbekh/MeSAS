@@ -11,4 +11,5 @@ public class MedicalRecord : Auditable
     public DateTime DiagnosisDate { get; set; }
     public string Diagnosis { get; set; }
     public string Treatment { get; set; }
+    public ICollection<Analyse> Analyse { get; set; }
 }

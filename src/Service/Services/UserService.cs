@@ -3,6 +3,7 @@ using DAL.IRepositories;
 using Domain.Configuration;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Service.DTOs.Attachments;
 using Service.DTOs.Users;
 using Service.Exceptions;
 using Service.Extensions;
@@ -13,7 +14,7 @@ namespace Service.Services;
 
 public class UserService : IUserService
 {
-
+    private readonly IAttachmentService attachmentService;
     private readonly IMapper mapper;
     private readonly IRepository<User> repository;
     public UserService(IRepository<User> repository, IMapper mapper)
@@ -73,6 +74,22 @@ public class UserService : IUserService
 
         var result = this.mapper.Map<UserResultDto>(existUser);
         return result;
+    }
+
+    public async Task<UserResultDto> ImageUploadAsync(long id, AttachmentCreationDto dto)
+    {
+        var user = await repository.SelectAsync(p => p.Id.Equals(id))
+            ?? throw new NotFoundException("This User not found");
+
+        var createAttachment = await attachmentService.UploadAsync(dto);
+        user.AttachmentId= createAttachment.Id;
+
+        repository.Modify(user);
+        await repository.SaveAsync();
+
+
+        return  mapper.Map<UserResultDto>(user);
+
     }
 
     public async Task<UserResultDto> UpdateAsync(UserUpdateDto dto)

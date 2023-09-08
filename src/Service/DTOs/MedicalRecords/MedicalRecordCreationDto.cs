@@ -1,4 +1,4 @@
-﻿namespace Service.DTOs.MedicalRecords;
+﻿    namespace Service.DTOs.MedicalRecords;
 
 public class MedicalRecordCreationDto
 {
