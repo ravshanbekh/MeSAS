@@ -1,11 +1,12 @@
-﻿
+﻿@using Service.DTOs.Users;
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
-
+@model UserCreationDto
 
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -34,7 +35,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                                     <div class="form-outline datepicker w-100">
@@ -67,36 +68,14 @@
 
                                 </div>
                             </div>
-
+*@
                             <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-
-                                    <div class="form-outline">
-                                        <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                                        <label class="form-label" for="emailAddress">Email</label>
-                                    </div>
-
-                                </div>
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
                                         <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
                                         <label class="form-label" for="phoneNumber">Phone Number</label>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-
-                                    <select class="select form-control-lg">
-                                        <option value="1" disabled>Choose option</option>
-                                        <option value="2">Subject 1</option>
-                                        <option value="3">Subject 2</option>
-                                        <option value="4">Subject 3</option>
-                                    </select>
-                                    <label class="form-label select-label">Choose option</label>
 
                                 </div>
                             </div>

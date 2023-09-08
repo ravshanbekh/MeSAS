@@ -1,5 +1,6 @@
 ﻿using MedicalHealthAssistantWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Service.DTOs.Users;
 using System.Diagnostics;
 
 namespace MedicalHealthAssistantWeb.Controllers;
@@ -18,10 +19,21 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult Signin(UserCreationDto dto)
+    {
+        return View();
+    } 
+
     public IActionResult Signup()
     {
         return View();
     }
+    public IActionResult Signup(UserCreationDto dto)
+    {
+        return View();
+    }
+
 
 
     public IActionResult Index()
@@ -30,6 +42,16 @@ public class HomeController : Controller
     }
 
     public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    public IActionResult About()
+    {
+        return View();
+    }
+
+    public IActionResult Contact()
     {
         return View();
     }

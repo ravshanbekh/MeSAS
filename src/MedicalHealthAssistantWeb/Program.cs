@@ -1,3 +1,7 @@
+using DAL.Contexts;
+using MedicalHealthAssistantApi.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +17,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//builder.Services.AddServices();
+
+/*builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+*/
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -22,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=User}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

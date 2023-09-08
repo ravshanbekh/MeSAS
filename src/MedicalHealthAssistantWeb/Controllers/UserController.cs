@@ -1,13 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.Interfaces;
 
 namespace MedicalHealthAssistantWeb.Controllers;
 
 public class UserController : Controller
 {
-    public IActionResult Index()
+    private IUserService userService;
+    
+    public UserController(IUserService userService)
     {
-        
-        return View();
+        this.userService = userService;
+    }
+
+    public async  Task<IActionResult> Index()
+    {
+        var result = await userService.GetAllUsersAsync();
+        return View(result);
     }
     public IActionResult Create()
     {
