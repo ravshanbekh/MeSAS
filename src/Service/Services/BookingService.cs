@@ -11,16 +11,25 @@ namespace Service.Services;
 public class BookingService : IBookingService
 {
     private readonly IMapper mapper;
-    private readonly IRepository<Booking> repository;
+    private readonly IRepository<Booking> repository; 
+    private readonly IRepository<User> repositoryUser; 
+    private readonly IRepository<Doctor> repositoryDoctor;
 
-    public BookingService(IRepository<Booking> repository, IMapper mapper)
+    public BookingService(IRepository<Booking> repository, IMapper mapper, IRepository<Doctor> repositoryDoctor, IRepository<User> repositoryUser)
     {
         this.repository = repository;
         this.mapper = mapper;
+        this.repositoryUser = repositoryUser;
+        this.repositoryDoctor = repositoryDoctor;
     }
     public async Task<BookingResultDto> CreateAsync(BookingCreationDto dto)
     {
         var mappedBooking = mapper.Map<Booking>(dto);
+        //await this.repositoryUser.SelectAsync();
+        var user= (await this.repository.SelectAsync(includes: new[] { "Users" })).User;
+        var doctor = (await this.repository.SelectAsync(includes: new[] { "Doctors" })).Doctor;
+        mappedBooking.User = user;
+        mappedBooking.Doctor = doctor;
         await this.repository.AddAsync(mappedBooking);
         await this.repository.SaveAsync();
 
