@@ -19,7 +19,7 @@ public class AttachmentService : IAttachmentService
 
     public async Task<Attachment> UploadAsync(AttachmentCreationDto dto)
     {
-        var webrootPath = Path.Combine(PathHelper.WebRootPath, "Files");
+        var webrootPath = Path.Combine("C:\\Users\\hp\\source\\repos\\MedicalHelathAssistantApp\\src\\MedicalHealthAssistantApi\\wwwroot\\", "Files");
         if(!Directory.Exists(webrootPath))
         {
             Directory.CreateDirectory(webrootPath);
