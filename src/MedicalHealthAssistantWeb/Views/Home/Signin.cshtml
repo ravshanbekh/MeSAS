@@ -2,6 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+@model UserSigninModel
+
 <section class="vh-100" style="background-color: #19A7CE;">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,22 +13,22 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
 
-                                <form class="mx-1 mx-md-4" asp-action="Login" asp-controller="User" method="post">
+                                <form class="mx-1 mx-md-4" asp-action="Signin" asp-controller="User" method="post">
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="tel" id="Email" class="form-control"  />
-                                            <label class="form-label" for="Email" >Phone</label>
+                                            <input type="tel" id="Email" class="form-control" asp-for="Phone"  />
+                                            <label class="form-label" for="Email" asp-for="Phone" >Phone</label>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" name="Password" id="Password" class="form-control" onkeyup="onChange()" />
-                                            <label class="form-label" name="Password" for="Password"  onkeyup="onChange()">Password</label>
+                                            <input type="password" name="Password" id="Password" class="form-control" onkeyup="onChange()" asp-for="Password" />
+                                            <label class="form-label" name="Password" for="Password" onkeyup="onChange()" asp-for="Password">Password</label>
                                         </div>
                                     </div>
 

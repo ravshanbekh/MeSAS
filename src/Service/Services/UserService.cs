@@ -96,6 +96,16 @@ public class UserService : IUserService
 
     }
 
+    public async Task<bool> SigninAsync(string phone, string password)
+    {
+        var user = await repository.SelectAsync(u=> u.Phone.Equals(phone));
+        if (user is null)
+            throw new NotFoundException("This User not found");
+
+        var result = PasswordHash.Verify(user.Password,password);
+        return result;
+    }
+
     public async Task<UserResultDto> UpdateAsync(UserUpdateDto dto)
     {
         User existUser = await this.repository.SelectAsync(u => u.Id.Equals(dto.Id));

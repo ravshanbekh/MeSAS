@@ -32,13 +32,8 @@
         </tr>
     </thead>
     <tbody>
-        @if(Model is null)
+        @if(Model is not null)
         {
-
-        }
-        else
-        {
-            
             @foreach(var item in Model)
             {
                 <tr>
@@ -59,7 +54,7 @@
                     <td>
                         <div class="d-flex align-items-center">
                             <div>
-                                <form asp-action="Update" asp-controller="User" asp-route="@item.Id">
+                                <form asp-action="Update" asp-controller="User" asp-route-id="@item.Id">
                                     <button type="submit" class="btn btn-secondary">Edit</button>
                                 </form>
                             </div>

@@ -20,4 +20,5 @@ public interface IUserService
     ValueTask<UserResultDto> UpgradeRoleAsync(long id, UserRole role);
 
     Task<UserResultDto> ImageUploadAsync(long id, AttachmentCreationDto dto);
+    Task<bool> SigninAsync(string phone, string password);
 }

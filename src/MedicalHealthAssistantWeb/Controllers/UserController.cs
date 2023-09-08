@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.DTOs.Users;
 using Service.Interfaces;
 
 namespace MedicalHealthAssistantWeb.Controllers;
@@ -12,10 +13,10 @@ public class UserController : Controller
         this.userService = userService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        //var result = await userService.GetAllUsersAsync();
-        return View();
+        var result = await userService.GetAllUsersAsync();
+        return View(result);
     }
     public IActionResult Create()
     {
@@ -25,6 +26,23 @@ public class UserController : Controller
     public IActionResult Update()
     {
         return View();
+    }
+
+
+    public async Task<IActionResult> Signin(string password,string phone)
+    {
+        var result = await userService.SigninAsync(password, phone);
+        if(result is true)
+            return RedirectToRoute(new { controller = "Home", action = "AdminPage" });
+        else
+            return View();
+    }
+
+    public async Task<IActionResult> Signup(UserCreationDto dto)
+    {
+        dto.Address = "Tashkent, Yunusobod";
+        var result = await userService.CreateAsync(dto);
+        return RedirectToRoute(new { controller = "Home", action = "AdminPage"});
     }
 
     [HttpDelete]
