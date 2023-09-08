@@ -1,4 +1,5 @@
-﻿using MedicalHealthAssistantApi.Models;
+﻿using Domain.Configuration;
+using MedicalHealthAssistantApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs.Users;
 using Service.Interfaces;
@@ -50,12 +51,12 @@ namespace MedicalHealthAssistantApi.Controllers
             });
 
         [HttpGet("getall")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PaginationParams @params)
             => Ok(new Response
             {
                 StatusCode = 200,
                 Message = "Succes",
-                Data = await userService.GetAllUsersAsync()
+                Data = await userService.GetAllUsersAsync(@params)
             });
     }
 }

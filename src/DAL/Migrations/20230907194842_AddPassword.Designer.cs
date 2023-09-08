@@ -3,6 +3,7 @@ using System;
 using DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230907194842_AddPassword")]
+    partial class AddPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,6 +58,9 @@ namespace DAL.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
@@ -62,6 +68,8 @@ namespace DAL.Migrations
                     b.HasIndex("MedicalRecordId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Analyses");
                 });
@@ -80,6 +88,9 @@ namespace DAL.Migrations
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("DoctorId1")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("MeetingDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -89,11 +100,18 @@ namespace DAL.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
+                    b.HasIndex("DoctorId1");
+
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Bookings");
                 });
@@ -343,10 +361,14 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("Analyses")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("Analyses")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Doctor");
 
@@ -358,16 +380,24 @@ namespace DAL.Migrations
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
                     b.HasOne("Domain.Entities.Doctor", "Doctor")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User", "User")
+                    b.HasOne("Domain.Entities.Doctor", null)
                         .WithMany("Bookings")
+                        .HasForeignKey("DoctorId1");
+
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Doctor");
 

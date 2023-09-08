@@ -5,6 +5,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Users;
 using Service.Exceptions;
+using Service.Extensions;
 using Service.Helpers;
 using Service.Interfaces;
 
@@ -55,9 +56,13 @@ public class UserService : IUserService
         return result;
     }
 
-    public Task<IEnumerable<UserResultDto>> GetAllUsersAsync(PaginationParams @params)
+    public async Task<IEnumerable<UserResultDto>> GetAllUsersAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        var users = await this.repository.SelectAll()
+            .ToPaginate(@params)
+            .ToListAsync();
+        var result = this.mapper.Map<IEnumerable<UserResultDto>>(users);
+        return result;
     }
 
     public async Task<UserResultDto> GetAsync(long id)
