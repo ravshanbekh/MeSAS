@@ -1,6 +1,7 @@
 ﻿using MedicalHealthAssistantWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs.Users;
+using Service.Interfaces;
 using System.Diagnostics;
 
 namespace MedicalHealthAssistantWeb.Controllers;
@@ -8,10 +9,11 @@ namespace MedicalHealthAssistantWeb.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IUserService userService;
+    public HomeController(ILogger<HomeController> logger, IUserService userService)
     {
         _logger = logger;
+        this.userService = userService;
     }
 
     public IActionResult Signin()
@@ -20,16 +22,18 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Signin(UserCreationDto dto)
+    public async Task<IActionResult> Signin(UserCreationDto dto)
     {
-        return View();
-    } 
+        var result = await this.userService.CreateAsync(dto);
+        return View(result);
+    }
 
-    public IActionResult Signup()
+    [HttpPost]
+    public IActionResult Signup(UserCreationDto dto)
     {
         return View();
     }
-    public IActionResult Signup(UserCreationDto dto)
+    public IActionResult Signup()
     {
         return View();
     }
@@ -52,6 +56,11 @@ public class HomeController : Controller
     }
 
     public IActionResult Contact()
+    {
+        return View();
+    }
+
+    public IActionResult AdminPage()
     {
         return View();
     }

@@ -7,6 +7,7 @@
 
 @model IEnumerable<UserResultDto>
 
+
 <div class="container overflow-hidden align-content-center">
     <div class="row gx-5 align-content-center align-items-center">
         <div class="col ">
@@ -31,38 +32,46 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
+        @if(Model is null)
         {
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                             alt=""
-                             style="width: 45px; height: 45px"
-                             class="rounded-circle" />
-                        <div class="ms-3">
-                                <p class="fw-bold mb-1">@item.FirstName @item.LastName</p>
+
+        }
+        else
+        {
+            
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                 alt=""
+                                 style="width: 45px; height: 45px"
+                                 class="rounded-circle" />
+                            <div class="ms-3">
+                                    <p class="fw-bold mb-1">Name</p>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">@item.Phone</p>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <form asp-action="Update" asp-controller="User">
-                                <button type="submit" class="btn btn-secondary">Edit</button>
-                            </form>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">Phone</p>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <form asp-action="Update" asp-controller="User" asp-route="@item.Id">
+                                    <button type="submit" class="btn btn-secondary">Edit</button>
+                                </form>
+                            </div>
+                            <div class="m-lg-3">
+                                <form asp-action="remove" asp-controller="User" asp-route-id="@item.Id">
+                                    <button type="submit" class="btn btn-secondary">Remove</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="m-lg-3">
-                            <form asp-action="Create" asp-controller="User">
-                                <button type="submit" class="btn btn-secondary">Remove</button>
-                            </form>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
