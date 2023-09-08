@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MedicalHealthAssistantWeb.Controllers
+namespace MedicalHealthAssistantWeb.Controllers;
+
+public class HospitalController : Controller
 {
-    public class HospitalController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }
