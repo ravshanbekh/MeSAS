@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Entitiesrg;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Contexts;
@@ -18,26 +17,5 @@ public class AppDbContext:DbContext
    public  DbSet<MedicalRecord> MedicalRecords { get; set; }
    public  DbSet<Message> Messages { get; set; }
 
-    //protected override void OnModelCreating(ModelBuilder modelBuilder)
-    //{
-    //    modelBuilder.Entity<Analyse>()
-    //        .HasOne(i => i.User)
-    //        .WithMany()
-    //        .HasForeignKey(i => i.UserId);
-
-    //    modelBuilder.Entity<Analyse>()
-    //        .HasOne(i => i.Doctor)
-    //        .WithMany()
-    //        .HasForeignKey(i => i.DoctorId);
-
-    //    modelBuilder.Entity<Booking>()
-    //        .HasOne(i => i.User)
-    //        .WithMany()
-    //        .HasForeignKey(i => i.UserId);
-
-    //    modelBuilder.Entity<Booking>()
-    //        .HasOne(i => i.Doctor)
-    //        .WithMany()
-    //        .HasForeignKey(i => i.DoctorId);
-    //}
+ //    .WithMany().HasForeignKey(x => x.UserId);
 }

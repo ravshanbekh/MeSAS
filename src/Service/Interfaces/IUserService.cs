@@ -1,4 +1,5 @@
 ﻿using Domain.Configuration;
+using Service.DTOs.Attachments;
 using Service.DTOs.Users;
 
 namespace Service.Interfaces;
@@ -11,4 +12,5 @@ public interface IUserService
     Task<IEnumerable<UserResultDto>> GetAllUsersAsync();
     Task<IEnumerable<UserResultDto>> GetAllUsersAsync(PaginationParams @params);
     Task<UserResultDto> GetAsync(long id);
+    Task<UserResultDto> ImageUploadAsync(long id, AttachmentCreationDto dto);
 }

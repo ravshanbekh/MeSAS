@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Entitiesrg;
 using Service.DTOs.Attachments;
 
 namespace Service.Interfaces;

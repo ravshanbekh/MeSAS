@@ -1,6 +1,7 @@
 ﻿using Domain.Configuration;
 using MedicalHealthAssistantApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Service.DTOs.Attachments;
 using Service.DTOs.Users;
 using Service.Interfaces;
 
@@ -58,6 +59,15 @@ namespace MedicalHealthAssistantApi.Controllers
                 Message = "Succes",
                 Data = await userService.GetAllUsersAsync(@params)
             });
+        [HttpPost("image-upload")]
+        public async Task<IActionResult> UploadImageAsync(long id, [FromForm] AttachmentCreationDto dto)
+            => Ok(new Response
+            {
+                StatusCode = 200,
+                Message = "Succes",
+                Data = await userService.ImageUploadAsync(id, dto)
+            }
+                );
     }
 }
 
