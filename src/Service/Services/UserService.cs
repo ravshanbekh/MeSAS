@@ -10,6 +10,8 @@ using Service.Exceptions;
 using Service.Extensions;
 using Service.Helpers;
 using Service.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Service.Services;
 
@@ -51,7 +53,7 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<UserResultDto>> GetAllUsersAsync()
     {
-        var users = await this.repository.SelectAll()
+        var users = await repository.SelectAll()
            .ToListAsync();
            //.ToPaginate(@params)
         var result = this.mapper.Map<IEnumerable<UserResultDto>>(users);
