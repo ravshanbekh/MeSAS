@@ -1,4 +1,5 @@
-﻿using Service.DTOs.Attachments;
+﻿using Domain.Enums;
+using Service.DTOs.Attachments;
 
 namespace Service.DTOs.Users;
 
@@ -10,5 +11,6 @@ public class UserResultDto
     public string Password { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
+    public UserRole Role { get; set; }
     public long AttachmentId { get; set; }
 }

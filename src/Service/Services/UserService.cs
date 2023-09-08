@@ -2,6 +2,7 @@
 using DAL.IRepositories;
 using Domain.Configuration;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Service.DTOs.Users;
 using Service.Exceptions;
@@ -84,6 +85,18 @@ public class UserService : IUserService
         this.mapper.Map(dto, existUser);
         existUser.Password = PasswordHash.Encrypt(dto.Password);
         this.repository.Modify(existUser);
+        await this.repository.SaveAsync();
+
+        var result = this.mapper.Map<UserResultDto>(existUser);
+        return result;
+    }
+    public async ValueTask<UserResultDto> UpgradeRoleAsync(long id, UserRole role)
+    {
+        User existUser = await this.repository.SelectAsync(u => u.Id.Equals(id));
+        if (existUser is null)
+            throw new NotFoundException($"This user is not found with ID = {id}");
+
+        existUser.Role = role;
         await this.repository.SaveAsync();
 
         var result = this.mapper.Map<UserResultDto>(existUser);

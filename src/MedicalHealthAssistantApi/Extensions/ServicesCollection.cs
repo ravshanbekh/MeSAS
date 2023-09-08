@@ -2,6 +2,7 @@
 using DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Service.Interfaces;
 using Service.Mappers;
 using Service.Services;
@@ -21,6 +22,8 @@ public static class ServicesCollection
         services.AddScoped<IDoctorService, DoctorService>();
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<IAttachmentService, AttachmentService>();
+        services.AddScoped<IAuthService, AuthService>();
+       
 
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -49,5 +52,34 @@ public static class ServicesCollection
             };
         });
 
+    }
+    public static void ConfigureSwagger(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(setup =>
+        {
+            // Include 'SecurityScheme' to use JWT Authentication
+            var jwtSecurityScheme = new OpenApiSecurityScheme
+            {
+                BearerFormat = "JWT",
+                Name = "JWT Authentication",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = JwtBearerDefaults.AuthenticationScheme,
+                Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+                Reference = new OpenApiReference
+                {
+                    Id = JwtBearerDefaults.AuthenticationScheme,
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+
+            setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+            setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { jwtSecurityScheme, Array.Empty<string>() }
+                });
+        });
     }
 }
