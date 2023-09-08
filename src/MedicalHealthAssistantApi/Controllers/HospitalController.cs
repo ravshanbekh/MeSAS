@@ -1,6 +1,8 @@
 ﻿using MedicalHealthAssistantApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs.Hospitals;
+using Service.DTOs.Messages;
 using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers;
@@ -51,5 +53,53 @@ public class HospitalController : BaseController
             StatusCode = 200,
             Message = "Success",
             Data = await hospitalService.GetAllHospitalsAsync()
+        });
+
+
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
+    [HttpPost("create-message")]
+    public async Task<IActionResult> PostMessageAsync(MessageCreationDto dto)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Data = await messageService.CreateAsync(dto)
+        });
+
+
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
+    [HttpDelete("delete-message")]
+    public async Task<IActionResult> DeleteMessageAsync(long id)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Data = await messageService.DeleteAsync(id)
+        });
+
+
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
+    [HttpGet("getall-message")]
+    public async Task<IActionResult> GetAll()
+       => Ok(new Response
+       {
+           StatusCode = 200,
+           Message = "Succes",
+           Data = await messageService.GetAllMessagesAsync()
+       });
+
+
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
+    [HttpGet("api/get/id/message")]
+    public async Task<IActionResult> GetByIdMessageAsync(long Id)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Data = await messageService.GetAsync(Id)
         });
 }

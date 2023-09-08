@@ -39,13 +39,28 @@ public class UserController : Controller
 
     [HttpPut("Update")]
 
-    public async Task<IActionResult> PutAsync(UserUpdateDto dto)
-        => Ok(new Response
+    public async Task<IActionResult> PutAsync(UserViewUpdate dto)
+    {
+        long id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
+        var dtoUser = new UserUpdateDto() 
         {
-            StatusCode = 200,
-            Message = "Succes",
-            Data = await userService.UpdateAsync(dto)
-        });
+            Id=id,
+            Role=dto.Role,
+            Phone=dto.Phone,
+            Address=dto.Address,
+            LastName=dto.LastName,
+            Password=dto.Password,
+            FirstName=dto.FirstName,
+            AttachmentId=dto.AttachmentId,
+        };
+
+        return Ok(new Response
+           {
+               StatusCode = 200,
+               Message = "Succes",
+               Data = await userService.UpdateAsync(dtoUser)
+           });
+    }
 
     [HttpGet("api/get/id")]
     public async Task<IActionResult> GetById(long Id)
@@ -79,6 +94,7 @@ public class UserController : Controller
             Data = await userService.GetAllUsersAsync(@params)
         });
 
+    [Authorize(Roles ="SuperAdmin")]
     [HttpPatch("upgrade-role")]
     public async ValueTask<IActionResult> UpgradeRoleAsync(long id, UserRole role)
     => Ok(new Response
@@ -97,6 +113,19 @@ public class UserController : Controller
             Data = await userService.ImageUploadAsync(id, dto)
         }
             );
+
+    [HttpGet("getLast-userMessage")]
+    public async Task<IActionResult> GetLastMessage()
+    {
+        int id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
+        return Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Data = (await messageService.GetAllMessagesAsync()).Where(x => x.UserId.Equals(id)).LastOrDefault().MessageBody
+        });
+    }
+
     [HttpGet("getall-userMessage")]
     public async Task<IActionResult> GetAllMessage()
     {
