@@ -57,6 +57,8 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AttachmentId");
+
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("MedicalRecordId");
@@ -64,6 +66,33 @@ namespace DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Analyses");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Attachment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attachments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Booking", b =>
@@ -80,7 +109,7 @@ namespace DAL.Migrations
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("MeetingDate")
+                    b.Property<DateTime>("Meetingtime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -148,6 +177,8 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AttachmentId");
+
                     b.HasIndex("HospitalId");
 
                     b.ToTable("Doctors");
@@ -167,6 +198,10 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("HospitalName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("HospitalType")
                         .HasColumnType("integer");
 
@@ -174,14 +209,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
 
                     b.ToTable("Hospitals");
                 });
@@ -234,27 +267,27 @@ namespace DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("BodyMassege")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("HospitalId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("MessageBody")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("UserId")
+                    b.Property<long>("UserID")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HospitalId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Messages");
                 });
@@ -301,38 +334,17 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AttachmentId");
+
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Domain.Entitiesrg.Attachment", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Attachments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Analyse", b =>
                 {
+                    b.HasOne("Domain.Entities.Attachment", "Attachment")
+                        .WithMany()
+                        .HasForeignKey("AttachmentId");
+
                     b.HasOne("Domain.Entities.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
@@ -340,7 +352,7 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.MedicalRecord", "MedicalRecord")
-                        .WithMany()
+                        .WithMany("Analyse")
                         .HasForeignKey("MedicalRecordId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -350,6 +362,8 @@ namespace DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Attachment");
 
                     b.Navigation("Doctor");
 
@@ -361,7 +375,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
                     b.HasOne("Domain.Entities.Doctor", "Doctor")
-                        .WithMany("Bookings")
+                        .WithMany("Booking")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -379,13 +393,28 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
                 {
+                    b.HasOne("Domain.Entities.Attachment", "Attachment")
+                        .WithMany()
+                        .HasForeignKey("AttachmentId");
+
                     b.HasOne("Domain.Entities.Hospital", "Hospital")
                         .WithMany("Doctors")
                         .HasForeignKey("HospitalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Attachment");
+
                     b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Hospital", b =>
+                {
+                    b.HasOne("Domain.Entities.Attachment", "Attachment")
+                        .WithMany()
+                        .HasForeignKey("AttachmentId");
+
+                    b.Navigation("Attachment");
                 });
 
             modelBuilder.Entity("Domain.Entities.MedicalRecord", b =>
@@ -416,8 +445,8 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId")
+                        .WithMany("Message")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -426,9 +455,18 @@ namespace DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Domain.Entities.Attachment", "Attachment")
+                        .WithMany()
+                        .HasForeignKey("AttachmentId");
+
+                    b.Navigation("Attachment");
+                });
+
             modelBuilder.Entity("Domain.Entities.Doctor", b =>
                 {
-                    b.Navigation("Bookings");
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("Domain.Entities.Hospital", b =>
@@ -436,6 +474,11 @@ namespace DAL.Migrations
                     b.Navigation("Doctors");
 
                     b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MedicalRecord", b =>
+                {
+                    b.Navigation("Analyse");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -446,7 +489,7 @@ namespace DAL.Migrations
 
                     b.Navigation("MedicalRecords");
 
-                    b.Navigation("Messages");
+                    b.Navigation("Message");
                 });
 #pragma warning restore 612, 618
         }

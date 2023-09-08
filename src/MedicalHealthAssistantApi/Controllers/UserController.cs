@@ -3,6 +3,7 @@ using Domain.Enums;
 using MedicalHealthAssistantApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service.DTOs.Attachments;
 using Service.DTOs.Users;
 using Service.Interfaces;
 
@@ -67,6 +68,7 @@ namespace MedicalHealthAssistantApi.Controllers
                 Message = "Succes",
                 Data = await userService.GetAllUsersAsync(@params)
             });
+
         [HttpPatch("upgrade-role")]
         public async ValueTask<IActionResult> UpgradeRoleAsync(long id, UserRole role)
         => Ok(new Response
@@ -75,6 +77,17 @@ namespace MedicalHealthAssistantApi.Controllers
             Message = "Success",
             Data = await this.userService.UpgradeRoleAsync(id, role)
         });
+
+        [HttpPost("image-upload")]
+        public async Task<IActionResult> UploadImageAsync(long id, [FromForm] AttachmentCreationDto dto)
+            => Ok(new Response
+            {
+                StatusCode = 200,
+                Message = "Succes",
+                Data = await userService.ImageUploadAsync(id, dto)
+            }
+                );
+
     }
 }
 

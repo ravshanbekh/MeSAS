@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Domain.Entitiesrg;
 using Service.DTOs.Analyses;
 using Service.DTOs.Attachments;
 using Service.DTOs.Bookings;
