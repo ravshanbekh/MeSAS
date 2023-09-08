@@ -1,11 +1,12 @@
-﻿@using Service.DTOs.Users;
+﻿@using Service.DTOs.Hospitals;
+@using Service.DTOs.Users;
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
-@model IEnumerable<UserResultDto>
+@model IEnumerable<HospitalResultDto>
 
 
 <div class="container overflow-hidden align-content-center">
@@ -33,12 +34,7 @@
     </thead>
     <tbody>
         @if(Model is null)
-        {
-
-        }
-        else
-        {
-            
+        {            
             @foreach(var item in Model)
             {
                 <tr>

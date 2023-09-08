@@ -54,12 +54,12 @@
                     <td>
                         <div class="d-flex align-items-center">
                             <div>
-                                <form asp-action="Update" asp-controller="User" asp-route-id="@item.Id">
+                                <form asp-action="Update" asp-controller="User" asp-route-id="@item.Id" method="get">
                                     <button type="submit" class="btn btn-secondary">Edit</button>
                                 </form>
                             </div>
                             <div class="m-lg-3">
-                                <form asp-action="remove" asp-controller="User" asp-route-id="@item.Id">
+                                <form asp-action="Remove" asp-controller="User" asp-route-id="@item.Id" method="get">
                                     <button type="submit" class="btn btn-secondary">Remove</button>
                                 </form>
                             </div>

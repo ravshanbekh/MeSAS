@@ -23,15 +23,21 @@ public class UserController : Controller
         return View();
     }
 
-    public IActionResult Update()
+    public async Task<IActionResult> Update(long id)
+    {
+        var result = await userService.GetAsync(id);
+
+        return View(result);
+    }
+    [HttpPost]
+    public IActionResult Update(UserUpdateDto dto)
     {
         return View();
     }
 
-
     public async Task<IActionResult> Signin(string password,string phone)
     {
-        var result = await userService.SigninAsync(password, phone);
+        var result = await userService.SigninAsync(phone, password);
         if(result is true)
             return RedirectToRoute(new { controller = "Home", action = "AdminPage" });
         else
@@ -46,7 +52,7 @@ public class UserController : Controller
     }
 
     [HttpDelete]
-    public async Task<IActionResult> Delete(long id)
+    public async Task<IActionResult> Remove(long id)
     {
         var result = await this.userService.DeleteAsync(id);
         return RedirectToRoute(new { controller = "User", action = "Index" });

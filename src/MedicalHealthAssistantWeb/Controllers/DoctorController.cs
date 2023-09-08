@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.Services;
 
 namespace MedicalHealthAssistantWeb.Controllers;
 
 public class DoctorController : Controller
 {
-    public IActionResult Index()
+    private readonly DoctorService doctorService;
+
+    public DoctorController(DoctorService doctorService)
     {
-        return View();
+        this.doctorService = doctorService;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var result = await doctorService.GetAllDoctorsAsync();
+        return View(result);
     }
     public IActionResult Create() 
     {
