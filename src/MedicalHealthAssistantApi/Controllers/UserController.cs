@@ -88,7 +88,7 @@ public class UserController : Controller
         });
     }
 
-    //[Authorize(Roles="SuperAdmin")]
+    [Authorize(Roles="SuperAdmin,Admin")]
     [HttpGet("getall")]
     public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         => Ok(new Response

@@ -23,7 +23,7 @@ public static class ServicesCollection
         services.AddScoped<IBookingService, BookingService>();
         services.AddScoped<IAttachmentService, AttachmentService>();
         services.AddScoped<IAuthService, AuthService>();
-       
+        services.AddRouting(x => x.LowercaseUrls = true);
 
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

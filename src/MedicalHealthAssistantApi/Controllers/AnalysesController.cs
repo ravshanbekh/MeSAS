@@ -1,7 +1,9 @@
 ﻿using MedicalHealthAssistantApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.DTOs.Analyses;
 using Service.Interfaces;
+using System.Data;
 
 namespace MedicalHealthAssistantApi.Controllers;
 
@@ -42,6 +44,7 @@ public class AnalysesController : Controller
             Data = await this.analyseService.GetAsync(id)
         });
 
+    [Authorize(Roles = "Admin,SuperAdmin")]
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAllsync()
         => Ok(new Response
