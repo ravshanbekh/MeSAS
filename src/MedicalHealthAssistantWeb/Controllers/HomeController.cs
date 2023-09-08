@@ -21,24 +21,10 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Signin(UserCreationDto dto)
-    {
-        var result = await this.userService.CreateAsync(dto);
-        return View(result);
-    }
-
-    [HttpPost]
-    public IActionResult Signup(UserCreationDto dto)
-    {
-        return View();
-    }
     public IActionResult Signup()
     {
         return View();
     }
-
-
 
     public IActionResult Index()
     {
