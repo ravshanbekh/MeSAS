@@ -1,5 +1,8 @@
 ﻿using Domain.Enums;
+using Service.DTOs.Analyses;
 using Service.DTOs.Attachments;
+using Service.DTOs.MedicalRecords;
+using Service.DTOs.Messages;
 
 namespace Service.DTOs.Users;
 
@@ -13,4 +16,8 @@ public class UserResultDto
     public string Address { get; set; }
     public UserRole Role { get; set; }
     public long? AttachmentId { get; set; }
+    public ICollection<AnalyseResultDto> Analyses { get; set; }
+    public ICollection<MedicalRecordResultDto> MedicalRecords { get; set; }
+    public ICollection<MessageResultDto> Message { get; set; }
+
 }
