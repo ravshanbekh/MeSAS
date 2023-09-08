@@ -37,15 +37,19 @@ public class UserController : Controller
             Data = await userService.DeleteAsync(id)
         });
 
+    [Authorize(Roles = "SuperAdmin,Admin,User")]
     [HttpPut("Update")]
 
     public async Task<IActionResult> PutAsync(UserViewUpdate dto)
     {
         long id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
+        var role = Convert.ToInt32(HttpContext.User.FindFirstValue("Role"));
+        UserRole Role = (UserRole)role;
+
         var dtoUser = new UserUpdateDto() 
         {
             Id=id,
-            Role=dto.Role,
+            Role=Role,
             Phone=dto.Phone,
             Address=dto.Address,
             LastName=dto.LastName,
@@ -63,7 +67,7 @@ public class UserController : Controller
     }
 
     [HttpGet("api/get/id")]
-    public async Task<IActionResult> GetById(long Id)
+    public async Task<IActionResult> GetByIdAsync(long Id)
     {
         return Ok(new Response
         {
@@ -73,7 +77,7 @@ public class UserController : Controller
         });
     }
     [HttpGet("api/get/current/user")]
-    public async Task<IActionResult> GetByCurrentUser()
+    public async Task<IActionResult> GetByCurrentUserAsync()
     {
         var id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
         return Ok(new Response
@@ -86,7 +90,7 @@ public class UserController : Controller
 
     //[Authorize(Roles="SuperAdmin")]
     [HttpGet("getall")]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationParams @params)
+    public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         => Ok(new Response
         {
             StatusCode = 200,
@@ -115,7 +119,7 @@ public class UserController : Controller
             );
 
     [HttpGet("getLast-userMessage")]
-    public async Task<IActionResult> GetLastMessage()
+    public async Task<IActionResult> GetLastMessageAsync()
     {
         int id = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
         return Ok(new Response
