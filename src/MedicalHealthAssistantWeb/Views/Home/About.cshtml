@@ -1,25 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
 }
 
-<body class="bg-image"
-      style="background-image: url('https://www.meritalk.com/wp-content/uploads/2016/06/EHR-2.jpg'); background-repeat: repeat;
-  background-position: right top; ">
-    
-</body>
-
-<<<<<<< HEAD
-=======
-*@
-
-<body class="bg-image" style="background-image: url(https://files.techmahindra.com/static/img/clinical-data-analytics-thumb.jpg); height: 100vh;">
+<body style="background-color: #B0DAFF">
     <header>
         <style>
             @@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,300&display=swap');
         </style>
 
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color:#19A7CE; font-family: 'Roboto', sans-serif; opacity:90%">
+        <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color:#19A7CE; font-family: 'Roboto', sans-serif;">
             <!-- Container wrapper -->
             <div class="container-fluid w-100">
                 <!-- Navbar brand -->
@@ -45,6 +37,7 @@
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
                         </li>
+                        
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="@Url.Action("Index","Home")">Doctors</a>
                         </li>
@@ -77,6 +70,45 @@
         </nav>
         <!-- Navbar -->
     </header>
+
+    <section style="margin:30px 10% 0 10%">
+        <div class="text-center my-3">
+            <h3>What is a Health Care Assistant?</h3>
+        </div>
+        <div class="mx-lg-5">
+            <p>
+                A health care assistant (HCA) is a person who provides basic nursing and personal care services to patients in hospitals, nursing homes, residential aged care facilities, community health centers, and clients’ homes.
+                <br />
+                Healthcare assistants work under the supervision of registered nurses and other health professionals. They play an important role in providing quality care and support to patients and clients.
+            </p>
+            <img src="https://cdn-hibhh.nitrocdn.com/cSmWTHYMVIExXzmhiWSuqcypazGVPyGD/assets/images/optimized/rev-e51b0f8/wcc.ca/wp-content/uploads/2023/02/What-is-a-Health-Care-Assistant.jpg" class="img-fluid" alt="img">
+
+            <div class="text-center my-3">
+                <h3>What is a Health Care Assistant?</h3>
+            </div>
+
+            <p>
+                As a Health Care Assistant, your primary responsibilities will include providing personal care to patients, such as bathing, dressing, and feeding, as well as helping with activities of daily living. You will also assist with mobility and transfers, take vital signs, and perform basic health observations.
+                <br />
+                In addition to hands-on care, you will also be responsible for maintaining a clean and safe environment for patients and ensuring their comfort and well-being. This may include making beds, doing laundry, and tidying the patient’s room.
+            </p>
+
+            <div class="text-center my-3">
+                <h3>Is a Health Care Assistant a Nurse?</h3>
+            </div>
+            
+            <p>
+                No, a Health Care Assistant is not a nurse. While HCAs and nurses work in the healthcare industry and provide care to patients, their roles and responsibilities differ.
+                <br />
+                Nurses are licensed healthcare professionals who have completed extensive training and education and are responsible for administering medications, creating and implementing care plans, and supervising HCAs and other healthcare staff.
+            </p>
+
+        </div>
+    </section>
 </body>
 
->>>>>>> e2231cff9caf0f5d7fce822d6b266c6cef1c9cc3
+<style>
+    p{
+        font-size:20px;
+    }
+</style>

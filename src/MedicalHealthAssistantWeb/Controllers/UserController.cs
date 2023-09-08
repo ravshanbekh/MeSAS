@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Service.Interfaces;
 
 namespace MedicalHealthAssistantWeb.Controllers;
 
 public class UserController : Controller
 {
+    private IUserService userService;
+    
+    public UserController(IUserService userService)
+    {
+        this.userService = userService;
+    }
+
     public IActionResult Index()
     {
-        
+        //var result = await userService.GetAllUsersAsync();
         return View();
     }
     public IActionResult Create()
@@ -19,8 +27,10 @@ public class UserController : Controller
         return View();
     }
 
-    public IActionResult Delete()
+    [HttpDelete]
+    public async Task<IActionResult> Delete(long id)
     {
-        return View();
+        var result = await this.userService.DeleteAsync(id);
+        return RedirectToRoute(new { controller = "User", action = "Index" });
     }
 }

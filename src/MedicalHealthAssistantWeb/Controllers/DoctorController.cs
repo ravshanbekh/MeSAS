@@ -1,26 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MedicalHealthAssistantWeb.Controllers
+namespace MedicalHealthAssistantWeb.Controllers;
+
+public class DoctorController : Controller
 {
-    public class DoctorController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Create() 
-        {
-            return View();
-        }
+        return View();
+    }
+    public IActionResult Create() 
+    {
+        return View();
+    }
 
-        public IActionResult Update()
-        {
-            return View();
-        }
+    public IActionResult Update()
+    {
+        return View();
+    }
 
-        public IActionResult Delete()
-        {
-            return View();
-        }
+    public IActionResult Delete()
+    {
+        return View();
     }
 }

@@ -1,0 +1,138 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<body style="background-color: #B0DAFF">
+    <header>
+        <style>
+            @@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,300&display=swap');
+        </style>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color:#19A7CE; font-family: 'Roboto', sans-serif;">
+            <!-- Container wrapper -->
+            <div class="container-fluid w-100">
+                <!-- Navbar brand -->
+                <a class="navbar-brand me-0" href="https://mdbgo.com/">
+                    <h3 class="text-light">HEALTH+</h3>
+                </a>
+
+                <!-- Toggle button -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarButtonsExample"
+                        aria-controls="navbarButtonsExample"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-5 ">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">Doctors</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="@Url.Action("About","Home")">About</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="@Url.Action("Contact","Home")">Contact</a>
+                        </li>
+                    </ul>
+
+                    <!-- Left links -->
+
+                    <div class="d-flex align-items-center">
+                        <form asp-action="Signin" asp-controller="Home" method="get">
+                            <button type="submit" class="btn btn-link px-3 me-2" style="color:white; text-decoration:none">
+                                Sign in
+                            </button>
+                        </form>
+                        <form asp-action="Signup" asp-controller="Home" method="get">
+                            <button type="submit" class="btn btn-primary me-3" style="background-color:#146C94">
+                                Sign up
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <div class="container mt-3">
+       <div class="row">
+            <div class="col-sm">
+                <div class="d-flex align-items-center">
+                    <img src="https://samoapools.com/contents/images/Customer-service-woman-on-headset-gives-OK-1024x770.jpg"
+                         alt="Logo"
+                         style="width: 100px; height: 80px"
+                         class="rounded-circle" />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">Operator Alisa</p>
+                        <p class="text-muted mb-0">Phone: +9988776655</p>
+                    </div>
+                </div>
+                <div style="margin-top:30px;">
+                    
+                    <img src="~/Icons/tm.png"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <img src="~/Icons/instagram.png"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                    <img src="~/Icons/facebook.png"
+                         alt=""
+                         style="width: 45px; height: 45px"
+                         class="rounded-circle" />
+                </div>
+
+            </div>
+            <div class="col-sm h-50 mt-3" style="width:40%;background-color:#19A7CE; border-radius:4px;">
+
+                <!-- Default form contact -->
+                <form class="text-center border border-light p-5" action="#!">
+
+                    <p class="h4 mb-4">Contact us</p>
+
+                    <!-- Name -->
+                    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+
+                    <!-- Email -->
+                    <input type="tel" id="defaultContactFormEmail" class="form-control mb-4" placeholder="phone">
+
+
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+                    </div>
+
+                    <!-- Copy -->
+                    <div class="custom-control custom-checkbox mb-4">
+                        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+                        <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
+                    </div>
+
+                    <!-- Send button -->
+                    <button class="btn btn-info btn-block" type="submit">Send</button>
+
+                </form>
+            </div>
+       </div> 
+    </div>
+    <!-- Default form contact -->
+
+
+</body>

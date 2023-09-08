@@ -1,4 +1,6 @@
-﻿namespace Service.Exceptions;
+﻿using System;
+
+namespace Service.Exceptions;
 
 public class NotFoundException:Exception
 {
