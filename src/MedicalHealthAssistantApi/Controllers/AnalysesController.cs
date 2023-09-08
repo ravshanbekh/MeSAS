@@ -32,7 +32,6 @@ public class AnalysesController : Controller
             Data = await this.analyseService.DeleteAsync(id)
         });
 
-    [HttpDelete("remove/{id:long}")]
 
     [HttpGet("get/{id:long}")]
     public async Task<IActionResult> GetByIdAsync(long id)

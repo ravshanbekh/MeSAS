@@ -5,7 +5,7 @@ using Service.Interfaces;
 
 namespace MedicalHealthAssistantApi.Controllers;
 
-public class BookingsController :BaseController
+public class BookingsController : BaseController
 {
     private readonly IBookingService bookingService;
     public BookingsController(IBookingService bookingService)
@@ -55,7 +55,7 @@ public class BookingsController :BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = bookingService.GetAllBookingsAsync()
+            Data = await bookingService.GetAllBookingsAsync()
         });
 
 }

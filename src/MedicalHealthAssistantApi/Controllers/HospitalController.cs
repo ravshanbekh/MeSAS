@@ -31,7 +31,6 @@ public class HospitalController : BaseController
             Data = await this.hospitalService.DeleteAsync(id)
         });
 
-    [HttpDelete("remove/{id:long}")]
 
     [HttpGet("get/{id:long}")]
     public async Task<IActionResult> GetByIdAsync(long id)
@@ -48,6 +47,6 @@ public class HospitalController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = hospitalService.GetAllHospitalsAsync()
+            Data = await hospitalService.GetAllHospitalsAsync()
         });
 }

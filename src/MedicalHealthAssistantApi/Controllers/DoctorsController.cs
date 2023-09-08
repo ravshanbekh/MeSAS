@@ -55,6 +55,6 @@ public class DoctorsController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = doctorService.GetAllDoctorsAsync()
+            Data = await doctorService.GetAllDoctorsAsync()
         });
 }
