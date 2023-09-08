@@ -8,9 +8,12 @@ namespace MedicalHealthAssistantApi.Controllers;
 public class HospitalController : BaseController
 {
     private readonly IHospitalService hospitalService;
-    public HospitalController(IHospitalService hospitalService)
+    private readonly IMessageService messageService;
+
+    public HospitalController(IHospitalService hospitalService, IMessageService messageService)
     {
         this.hospitalService = hospitalService;
+        this.messageService = messageService;
     }
 
     [HttpPost("create")]
